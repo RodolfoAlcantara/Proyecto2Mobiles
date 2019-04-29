@@ -38,7 +38,6 @@ class HomeViewController: UIViewController {
         self.alertAddComment()
     }
     public func saveData(data: FIRDataSnapshot){
-        self.comentarios.removeAll()
         var comentario: [String: String] = (data.value as? [String: String])!
         comentario["key"] = data.key
         self.comentarios.append(comentario)
@@ -78,7 +77,7 @@ class HomeViewController: UIViewController {
             }
         }
     }
-    public func makeAlertEdit(comentarioID: String) {
+    public func makeAlertEdit(comentarioID: String, indexComentario: Int) {
         let alert = UIAlertController(title: "Editar comentario", message: "Comentario para blog de la flor", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Escribe algo aquí ..."
@@ -87,11 +86,11 @@ class HomeViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Enviar", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0]
             guard let texto = textField?.text else { return }
-            self.updateComment(comentario: texto, comentarioID: comentarioID)
+            self.updateComment(comentario: texto, comentarioID: comentarioID, indexComentario: indexComentario)
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    public func updateComment(comentario: String, comentarioID: String) {
+    public func updateComment(comentario: String, comentarioID: String, indexComentario: Int) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let myString = formatter.string(from: Date())
@@ -100,6 +99,7 @@ class HomeViewController: UIViewController {
         let myStringafd = formatter.string(from: yourDate!)
         let number = Int.random(in: 0 ..< 999)
         self.databaseRef.child("users/" + self.username + "/Comentarios/").child(comentarioID).setValue(["Comentario": comentario, "Fecha": myStringafd])
+        self.comentarios.remove(at: indexComentario)
     }
     public func actionSheetComentario(indexpath: Int?) {
         let alert = UIAlertController(title: "Acciones", message: "", preferredStyle: .actionSheet)
@@ -107,7 +107,7 @@ class HomeViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Editar", style: .default, handler: { [weak alert] (_) in
             guard let index = indexpath else { return }
             guard let idComentario = self.comentarios[index]["key"] else { return }
-            self.makeAlertEdit(comentarioID: idComentario)
+            self.makeAlertEdit(comentarioID: idComentario, indexComentario: index)
         }))
         alert.addAction(UIAlertAction(title: "Eliminar", style: .default, handler: { [weak alert] (_) in
             guard let index = indexpath else { return }
