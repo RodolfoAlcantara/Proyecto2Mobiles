@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "HomeViewController.viewDidLoad():HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "comentario">
+            </PersistentString>
+            <PersistentString
+               value = "username">
+            </PersistentString>
+            <PersistentString
+               value = "comentarios">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.saveData(data:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "data.value as String">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.comentarios.didset:HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "comentarios">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in HomeViewController.viewDidLoad():HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "comentarios">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in LoginViewController.loginAction(_:):LoginViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user?.email">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
